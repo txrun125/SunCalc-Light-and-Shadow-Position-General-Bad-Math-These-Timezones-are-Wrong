@@ -1,0 +1,94 @@
+:root {
+	--scale: 160;
+	--gap: 6px;
+	--bg: #0b0f14;
+}
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+	background: radial-gradient(1000px 700px at 50% 25%, #12202c, var(--bg));
+	color: white;
+}
+.stage {
+	height: 100%;
+	display: grid;
+	place-items: center;
+	perspective: 1100px;
+	overflow: hidden;
+}
+.ball {
+	position: relative;
+	width: 560px;
+	height: 560px;
+	transform-style: preserve-3d;
+	animation: spin 20s linear infinite;
+}
+@keyframes spin {
+	from {
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	to {
+		transform: rotateX(360deg) rotateY(360deg);
+	}
+}
+
+.face {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	transform-style: preserve-3d;
+}
+.tile {
+	width: 80%;
+	height: 80%;
+	left: 10%;
+	top: 10%;
+	position: relative;
+	box-shadow: inset 0 0 20px black;
+	text-align: center;
+	line-height: 3em;
+	opacity: 0.8;
+}
+.tile.pent {
+	background: orange;
+}
+.tile.hex {
+	background: violet;
+}
+.tile::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(
+			60% 60% at 30% 30%,
+			rgba(255, 255, 255, 0.22),
+			transparent 60%
+		),
+		radial-gradient(70% 70% at 70% 70%, rgba(0, 0, 0, 0.18), transparent 60%);
+	mix-blend-mode: soft-light;
+	pointer-events: none;
+	border-radius: 18px;
+}
+
+.ui {
+	position: fixed;
+	left: 10px;
+	top: 10px;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.35);
+	padding: 8px 10px;
+	border-radius: 8px;
+}
+.ui label {
+	display: inline-flex;
+	gap: 6px;
+	align-items: center;
+	font-size: 12px;
+}
